@@ -18,9 +18,13 @@ namespace TacoFastFoodAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllTacos()
+        public IActionResult GetAllTacos(bool? SoftShell = null)
         {
             List<Taco> tacos = _tacosRepository.GetAllTacos();
+            if (SoftShell.HasValue)
+            {
+                tacos = (List<Taco>)tacos.Where(t => t.SoftShell == SoftShell.Value);
+            }
             return Ok(tacos);
         }
 
