@@ -23,7 +23,7 @@ namespace TacoFastFoodAPI.Controllers
             List<Taco> tacos = _tacosRepository.GetAllTacos();
             if (SoftShell.HasValue)
             {
-                tacos = (List<Taco>)tacos.Where(t => t.SoftShell == SoftShell.Value);
+                tacos = tacos.Where(t => t.SoftShell == SoftShell.Value).ToList();
             }
             return Ok(tacos);
         }
